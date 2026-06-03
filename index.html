@@ -221,6 +221,9 @@ small {
   transform: scale(1.08);
   background: rgba(255,255,255,0.18);
 }
+#adminPanel {
+  display: none;
+}
   </style>
 </head>
 <button id="musicButton" onclick="toggleMusic()">
@@ -344,7 +347,8 @@ small {
 
 </div>
 </div>
-<h2>Generator Link Tamu</h2>
+<div id="adminPanel">
+  <h2>Generator Link Tamu</h2>
 
 <input
   type="text"
@@ -560,6 +564,20 @@ function copyLink() {
 
 }
 </script>
+const urlParams =
+  new URLSearchParams(
+    window.location.search
+  );
 
+const admin =
+  urlParams.get("admin");
+
+if (admin === "true") {
+
+  document.getElementById(
+    "adminPanel"
+  ).style.display = "block";
+
+}
 </body>
 </html>     
