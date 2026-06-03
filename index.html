@@ -344,6 +344,19 @@ small {
 
 </div>
 </div>
+<h2>Generator Link Tamu</h2>
+
+<input
+  type="text"
+  id="namaLink"
+  placeholder="Masukkan nama tamu"
+>
+
+<button onclick="buatLink()">
+  Buat Link
+</button>
+
+<div id="hasilLink"></div>
   </section>
 
   <script>
@@ -495,6 +508,55 @@ if (namaTamu) {
 
   document.getElementById("namaTamu")
     .innerText = namaTamu;
+
+}
+function buatLink() {
+
+  const nama =
+    document.getElementById("namaLink").value;
+
+  if (nama === "") {
+    alert("Isi nama tamu dulu 😊");
+    return;
+  }
+
+  const baseUrl =
+    window.location.origin +
+    window.location.pathname;
+
+  const link =
+    baseUrl +
+    "?to=" +
+    encodeURIComponent(nama);
+
+  document.getElementById("hasilLink")
+    .innerHTML =
+    `
+    <p>Link Undangan:</p>
+
+    <input
+      type="text"
+      value="${link}"
+      id="linkOutput"
+      readonly
+    >
+
+    <button onclick="copyLink()">
+      Copy Link
+    </button>
+    `;
+
+}
+function copyLink() {
+
+  const link =
+    document.getElementById("linkOutput");
+
+  link.select();
+
+  document.execCommand("copy");
+
+  alert("Link berhasil dicopy 😄");
 
 }
 </script>
